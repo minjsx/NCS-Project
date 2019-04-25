@@ -1,0 +1,36 @@
+
+/* header, nolog-top-bar- */
+
+.nolog-top-bar{
+	background-color : rgb(26, 188, 156);
+	position: relative;
+	width : 100%;
+	height : 60px;
+	display : inline-block;
+	z-index : 10;
+}
+.nolog-top-bar div{
+	display : inline-block;
+	color : white;
+	font-weight : bold;
+	line-height : 60px;
+}
+
+.nolog-top-bar-left{
+	font-size : 24px;
+	padding-left : 13%;
+	cursor : pointer;	
+}
+
+.nolog-top-bar-right{
+	float : right;
+	padding-right : 12%;
+}
+.nolog-top-bar-right p{
+	display : inline-block;
+	padding-right : 10px;	
+}
+
+.nolog-top-bar-right div{
+	cursor : pointer;
+}

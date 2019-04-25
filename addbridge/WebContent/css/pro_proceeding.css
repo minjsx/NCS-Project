@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+.title_proceeding{
+	font-weight:bold; 
+	font-size:36px;
+}
+
+.h2_register{
+	font-weight: bold;
+    font-size: 24px;
+}
+
+.h2_simple_register{
+	margin-left:95px;
+	font-weight: bold;
+    font-size: 24px;
+    width:200px;
+    display: -webkit-inline-box;
+}
+
+.message_register_btn{
+	margin-left: 768px;
+	background-color: rgb(26, 188, 156);
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    line-height: 2.4em;
+    font-weight: bold;
+    text-align: center;
+	border:none;
+	cursor: pointer;
+}
+
+.site_div_1{
+	width:50px;
+}
+.site_proceeding{
+	margin-left:95px;
+}
+
+.site_all_proceeding{
+	margin-left:145px;
+}
+
+.site_promotion{
+	margin-left:95px;
+	width:1050px;
+	height:60px;
+	font-weight: bold;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background-color: rgb(26, 188, 156);
+   
+}
+
+.div_font_pr{
+	height:20px;
+}
+
+.font_promotion{
+	height:20px;
+}
+
+.hr_proceeding{
+	margin-left:88px;
+	width:70%;
+}
+
+.site_table_proceeding_1{
+	 border: 1px solid #444444;
+	 color:white;
+	 background-color: rgb(26, 188, 156);
+	 text-align:center;
+	 width:150px;
+	 height:30px;
+	 vertical-align:middle;
+}
+
+.site_table_proceeding_2{
+	 border: 1px solid #444444;
+	 width:500px;
+	 height:20px;
+	 vertical-align:middle;
+}
+
+.textarea_color{
+	vertical-align:middle;
+	 width:200px;
+	 height:30px;
+	 color:white;
+	 background-color: rgb(26, 188, 156);
+	 text-align:center;
+}
+
+.textarea_site{
+	 width:900px;
+	 height:200px;
+}

@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+.form_span{
+	margin-left:15px;
+}
+
+.all_section_comu{
+	height:35px;
+	background-color: rgb(26, 188, 156);
+}
+
+.top_section_comu{
+	margin-top:-6px;
+	color:white;
+}
+
+.partner_comu{
+	display: inline-block;
+	font-size: 0.9rem;
+}
+
+.div_all_comu{
+	width:100%;
+}
+
+.div_call_comu{
+	display: inline-block;
+}
+
+.phone_comu{
+	display: inline-block;
+	font-size: 0.9rem;
+}
+
+.email_comu{
+	display: inline-block;
+	font-size: 0.9rem;
+}
+
+.font_caution_comu{
+	font-size:13px;
+	color:orange;
+}
+
+.refresh_comu{
+	font-size:10px;
+	color:red;
+	margin-left:100px;
+}
+
+.title_msg_receive{
+	width: 439px;
+	height: 30px;
+}
+
+.comu_msg{
+	width: 437px; 
+	height:200px;
+	text-align:left;
+}
+
+.content_msg_receive{
+	width: 350px; 
+	height:40px;
+	text-align:left;
+}
+
+.form-checkbox{
+	cursor: pointer;
+}
+
+.send_msg{
+	font-size: 12px; 
+	color: rgb(255, 255, 255); 
+	text-align: center; 
+	line-height: 2.2em; 
+	border-radius: 4px; 
+	background-color: rgb(26, 188, 156);
+	width:82px; 
+	height:48px;
+	outline:none;
+	border:none;
+	cursor: pointer;
+}
+
+.complete_msg{
+	font-size: 12px; 
+	color: rgb(255, 255, 255); 
+	text-align: center; 
+	line-height: 2.2em; 
+	border-radius: 4px; 
+	background-color: rgb(26, 188, 156);
+	width:75px; 
+	height:40px;
+	outline:none;
+	border:none;
+	margin-left:70px;
+	cursor: pointer;
+}
+
+.cancel_msg{
+	font-size: 12px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 1.5em;
+    border-radius: 4px;
+    background-color: rgb(94, 94, 94);
+	width:75px; 
+	height:40px;
+	outline:none;
+	border:none;
+	margin-left:40px;
+	cursor: pointer;
+}
+
+
+.read_proceeding_1{
+	margin-left:60px;
+}
+
+.read_proceeding_2{
+	margin-left:30px;
+}

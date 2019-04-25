@@ -1,0 +1,37 @@
+
+/* header */
+
+.container{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.header{
+	
+}
+
+.content{
+	display:flex;
+}
+
+.left-content{
+    flex-grow: 1;
+    width: 180px;
+}
+
+.center-content{
+	flex-grow: 8;
+}
+
+.right-content{
+    flex-grow: 1;
+    width: 180px;
+}
+
+.footer{
+	  margin-top: auto;
+      text-align: center;
+      font-family:"Noto Sans KR", sans-serif
+	  !important;
+}

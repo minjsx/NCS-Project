@@ -1,0 +1,222 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.register-form-bg {
+	font-family: 'open sans', sans-serif;
+	background-size: cover;
+	height: 1000px;
+}
+
+.register-form-wrapper {
+	padding-top: 8%;
+}
+
+.find-form-wrapper {
+	
+}
+
+.register-img {
+	text-align: center;
+}
+
+.forms {
+	background: #fff;
+	box-shadow: 0 0 3px #000;
+	margin: 30px auto;
+	max-width: 500px;
+	overflow: hidden;
+	position: relative;
+	padding: 0;
+	margin-top: auto;
+}
+
+.forms h1 {
+	padding: 0 0 20px 0;
+	font-size: 26px;
+	color: #666;
+	font-weight: lighter;
+	text-align: center;
+}
+
+.forms form {
+	padding: 30px;
+}
+
+
+
+#AdvertiserRegister {
+	display: none;
+}
+
+#AdvertiserLogin {
+	display: none;
+}
+
+#passwordFind {
+	display: none;
+}
+
+.forms .tab-group {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.forms .tab-group:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.forms .tab-group li a {
+	display: block;
+	text-decoration: none;
+	padding: 15px;
+	background: #e5e6e7;
+	color: #888;
+	font-size: 20px;
+	float: left;
+	width: 50%;
+	text-align: center;
+	border-top: 3px solid transparent;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+
+.forms .tab-group li a:hover {
+	background: #dedfdf;
+	color: #666;
+}
+
+.forms .tab-group .active a {
+	background: rgb(26, 188, 156);
+	color: #444;
+}
+
+.forms input {
+	font-size: 16px;
+	display: block;
+	width: 100%;
+	padding: 10px 20px;
+	border: 1px solid #ddd;
+	color: #666;
+	border-radius: 0;
+	margin-bottom: 10px;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+
+.forms input:focus {
+	outline: 0;
+	border-color: #2e5ed7;
+}
+
+.forms label {
+	font-size: 21px;
+	font-weight: normal;
+	color: #666;
+	margin-bottom: 5px;
+	display: inline-block;
+}
+
+#label1 {
+	font-size: 17px;
+	font-weight: normal;
+	color: black;
+	padding: 0 90px;
+	margin-bottom: 20px;
+}
+
+#label2 {
+	font-size: 17px;
+	font-weight: normal;
+	color: black;
+	padding: 0 65px;
+}
+
+.form-checkbox {
+	cursor: pointer;
+	padding-left: 10px;
+}
+
+.form-agree-wrap {
+	display: table;
+	margin: 20px auto;
+}
+
+.forms .button {
+	border: 0;
+	outline: none;
+	border-radius: 0;
+	padding: 10px 0;
+	font-size: 18px;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	background: gray;
+	color: #ffffff;
+	cursor: pointer;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	margin-bottom: 20px;
+}
+
+.find-forms .button {
+	border: 0;
+	outline: none;
+	border-radius: 0;
+	padding: 5px 10px;
+	font-size: 15px;
+	letter-spacing: 2px;
+	background: gray;
+	color: #ffffff;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+/* .forms .button:hover, .button:focus {
+	background: rgb(26, 188, 156);
+} */
+.text-p a {
+	color: black;
+}
+
+/* findDataForm */
+.show-user-title {
+	text-align: left;
+	border: 0;
+	outline: none;
+	border-radius: 0;
+	padding: 10px 30px;
+	font-size: 18px;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	background: rgb(26, 188, 156);
+	color: #ffffff;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	margin-bottom: 20px;
+}
+
+.show-user-info {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.show-user-forms {
+	
+}

@@ -1,0 +1,352 @@
+/* CSS Reset */
+
+
+html, body, ul, p, a{
+	list-style-type: none;
+	margin : 0;
+	padding: 0;
+}
+
+li{
+	list-style-type: none;
+}
+
+a{
+	color: inherit;
+	text-decoration: none;
+}
+
+/* CSS Design */
+
+/* header */
+.header {
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    margin: 0px auto;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+    position: fixed;
+}
+
+.header::after{
+	content: none;
+	background-color: #fff;
+}
+
+.header-topmenu::before{
+	clear: both;
+	content: none;
+	display: block;
+	height: 0
+	visibility : hidden;
+}
+
+.logo{
+	position: absolute;
+  height: 50px;
+  width: 140px;
+  padding-left: 320px;
+	padding-top : 10px;
+}
+
+.header-topmenu-search{
+  position: absolute;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+}
+
+.header-search{
+	float: left;
+}
+
+.header-search input{
+	margin : 20px 10px 10px 500px;
+  height: 30px;
+  width: 300px;
+	border: solid 2px;
+	border-color: rgb(255,201,3);
+}
+
+.search_icon{
+	position: absolute;
+	margin : -35px 0px 0px 775px;
+	height: 20px;
+	width:  20px;
+  cursor: pointer;
+}
+
+.header-rmenu{
+	text-align: right;
+	margin: 0px 400px 0px 0px;
+}
+
+.header-rmenu li{
+	float : right;
+	margin: 20px 0px 0px 0px;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left : 10px;
+	padding-right : 30px;
+}
+
+.header-rmenu li a{
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.0);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.0);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.0);
+   transform : scale(1.0);
+   transition: all 200ms ease-in;
+}
+
+.header-rmenu li a:hover{
+  color : orange;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1.02);
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1.02);
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1.02);
+   transform : scale(1.02);
+   transition: all 200ms ease-in;
+}
+
+@media only screen and (min-width : 901px) {
+	.logo{
+		position: absolute;
+	  height: 50px;
+	  width: 140px;
+	  padding-left: 20px;
+		padding-top : 10px;
+	}
+
+	.header-search input{
+		margin : 20px 10px 10px 200px;
+	  height: 30px;
+	  width: 300px;
+		border: solid 2px;
+		border-color: rgb(255,201,3);
+	}
+
+	.search_icon{
+		position: absolute;
+		margin : -35px 0px 0px 475px;
+		height: 20px;
+		width:  20px;
+	  cursor: pointer;
+	}
+
+	.header-rmenu{
+	 text-align: right;
+	 margin: 0px 0px 0px 0px;
+	}
+}
+/* Desktops and laptops */
+@media only screen and (min-width : 1201px) {
+	.logo{
+		position: absolute;
+	  height: 50px;
+	  width: 140px;
+	  padding-left: 120px;
+		padding-top : 10px;
+	}
+
+	.header-search input{
+		margin : 20px 10px 10px 300px;
+	  height: 30px;
+	  width: 300px;
+		border: solid 2px;
+		border-color: rgb(255,201,3);
+	}
+
+	.search_icon{
+		position: absolute;
+		margin : -35px 0px 0px 575px;
+		height: 20px;
+		width:  20px;
+	  cursor: pointer;
+	}
+
+	.header-rmenu{
+	 text-align: right;
+	 margin: 0px 100px 0px 0px;
+	}
+
+}
+
+@media only screen and (min-width : 1424px) {
+	.header-rmenu{
+	 text-align: right;
+	 margin: 0px 300px 0px 0px;
+	}
+}
+ /* Large screens  */
+@media only screen and (min-width : 1824px) {
+	.logo{
+		position: absolute;
+	  height: 50px;
+	  width: 140px;
+	  padding-left: 320px;
+		padding-top : 10px;
+	}
+
+	.header-search input{
+		margin : 20px 10px 10px 500px;
+	  height: 30px;
+	  width: 300px;
+		border: solid 2px;
+		border-color: rgb(255,201,3);
+	}
+
+	.search_icon{
+		position: absolute;
+		margin : -35px 0px 0px 775px;
+		height: 20px;
+		width:  20px;
+	  cursor: pointer;
+	}
+
+	.header-rmenu{
+		text-align: right;
+		margin: 0px 400px 0px 0px;
+	}
+}
+
+.header-rmenu::after{
+	clear: both;
+	content: none;
+	display: block;
+	height: 0
+	visibility : hidden;
+}
+
+
+/* signup-main */
+
+.contents{
+    background: rgb(240,240,240);
+    min-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-wrap{
+    background: white;
+    width: 380px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.signup-logo-wrap{
+    height: 50px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-left: 45px;
+    text-align: left;
+}
+
+.signup-logo{
+    width: 140px;
+    display: inline-block;
+}
+
+.signup-logo-wrap p{
+    display: inline-block;
+    padding-left: 85px;
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+.signup-logo img{
+    height: 50px;
+    width: 140px;
+}
+
+.signup-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signup-input{
+    width: 270px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom:10px;
+}
+
+.signup-input input{
+    width: 90%;
+    height: 100%;
+    padding: 0 14px;
+}
+
+.signup-buttons-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 4%;
+}
+
+.signup-buttons{
+    width: 270px;
+    height: 35px;
+    padding-bottom:10px;
+}
+
+.signup-buttons input{
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-color : white;
+    border-radius: 5px;
+    border: none;
+}
+
+.signup-buttons input:hover{
+    opacity: .9;
+}
+
+/*TODO: input버튼 url 수정*/
+#login-btn input{
+    background-image: url("../images/icon/coutrip-login.JPG");
+    background-repeat: no-repeat;
+}
+
+#facebook-btn input{
+    background-image: url("../images/icon/facebook_login.jpg");
+    background-repeat: no-repeat;
+}
+
+#google-btn input{
+    background-image: url("../images/icon/google_login.jpg");
+    background-repeat: no-repeat;
+}
+
+#kakao-btn input{
+    background-image: url("../images/icon/kakao_login.jpg");
+    background-repeat: no-repeat;
+}
+
+#naver-btn input{
+    background-image: url("../images/icon/naver_login.jpg");
+    background-repeat: no-repeat;
+}
+
+.signup-footer{
+    padding-top: 10px;
+    height: 50px;
+}
+
+.login-text{
+    font-size: 14px;
+    font-weight: bold;
+    color : grey;
+}

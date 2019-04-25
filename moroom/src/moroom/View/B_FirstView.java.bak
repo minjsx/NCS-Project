@@ -1,0 +1,557 @@
+package moroom.View;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ListDataListener;
+import javax.swing.plaf.metal.MetalButtonUI;
+import javax.swing.table.AbstractTableModel;
+import java.time.*;
+
+import javafx.scene.control.ComboBox;
+import jdk.nashorn.internal.scripts.JO;
+import moroom.Controller.ViewController;
+import moroom.VO.Business;
+import moroom.VO.StudyCenter;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+public class B_FirstView extends JPanel implements ViewMaster{
+
+    private javax.swing.JTable B_FirstTable;
+    private javax.swing.JPanel B_SelectPanel;
+    private javax.swing.JButton btn_StartCalview;  	//접수일자 Start
+    private javax.swing.JButton btn_EndCalview;  	//접수일자 End
+    private javax.swing.JButton btn_ClearObject; 	// 초기화
+    private javax.swing.JButton btn_Search; 		// 검색
+    private javax.swing.JComboBox<String> combo_Company;
+    private javax.swing.JComboBox<String> combo_ResState;
+    private javax.swing.JLabel lab_SelectCompany;
+    private javax.swing.JLabel lab_SelectDate;
+    private javax.swing.JLabel lab_ResState;
+    private javax.swing.JScrollPane jScrollPane1; // Table고정 및 Scroll 추가해주는 ScrollPane
+    private javax.swing.JTextField tf_StartDate;
+    private javax.swing.JTextField tf_EndDate;
+    
+    ViewController vc = null;
+    BusinessClient bc = null;
+    Business b = null;
+    B_FirstViewModel fvmodel = null;
+
+	public B_FirstView(BusinessClient bc, ViewController vc, Business b, StudyCenter sc) {
+		this.vc = vc;
+		this.bc = bc;
+		this.b = b;
+
+		
+		addNewObject();
+		addLayOut();
+		initcomponent();
+		eventProc();
+		setVisible(true);
+	}
+	
+
+	
+	private void initcomponent() {
+
+	        ArrayList<String> companeylist = new ArrayList<String>();
+	        companeylist.add("선    택");
+	        try {
+				ArrayList<StudyCenter> sclist = vc.getMyCenter(b.getB_no());
+				for(StudyCenter sc : sclist) {
+					   companeylist.add(sc.getSc_name());
+				}
+				
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e.getMessage(), "[알림]", JOptionPane.DEFAULT_OPTION);
+			}
+	        
+	     
+	        //18.12.03 수정 (사업가 회원가입시 OutOfIndex 되던 부분 수정)
+//	        combo_Company.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+	        combo_Company.setModel(new DefaultComboBoxModel(companeylist.toArray()));
+	        if(combo_Company.getItemCount() > 1) 
+	        	combo_Company.setSelectedIndex(1);
+	        else 
+	        	combo_Company.setSelectedIndex(0);
+	        
+	        ArrayList<String> resstatelist = new ArrayList<String>();
+	        resstatelist.add("선    택");
+	        resstatelist.add(MeetingState.RECRUITING_MEETING.getRoomState());
+	        resstatelist.add(MeetingState.DEADLINE_MEETING.getRoomState());
+	        resstatelist.add(MeetingState.COMPLETED_RES_MEETINGROOM.getRoomState());
+	        resstatelist.add(MeetingState.END_MEETING.getRoomState());
+	        resstatelist.add(MeetingState.CANCEL_MEETINGROOM.getRoomState());
+	        
+//	        combo_ResState.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+	        combo_ResState.setModel(new DefaultComboBoxModel(resstatelist.toArray()));
+	        combo_ResState.setSelectedIndex(1);
+	        
+	        
+		 	lab_SelectCompany.setText("업소선택");
+
+	        lab_SelectDate.setText("접수일자");
+
+	        lab_ResState.setText("예약상태");
+
+	        btn_ClearObject.setText("초기화");
+
+	        btn_Search.setText("검색");
+
+	        tf_StartDate.setEditable(false);
+	        tf_EndDate.setEditable(false);
+	        
+	        btn_StartCalview.setText("...");
+
+	        btn_EndCalview.setText("...");
+
+	}
+	
+	@Override
+	public void addNewObject() {
+
+        B_SelectPanel = new javax.swing.JPanel();
+        lab_SelectCompany = new javax.swing.JLabel();
+        combo_Company = new javax.swing.JComboBox<>();
+        lab_SelectDate = new javax.swing.JLabel();
+        lab_ResState = new javax.swing.JLabel();
+        combo_ResState = new javax.swing.JComboBox<>();
+        btn_ClearObject = new javax.swing.JButton();
+        btn_Search = new javax.swing.JButton();
+        tf_StartDate = new javax.swing.JTextField();
+        tf_EndDate = new javax.swing.JTextField();
+        btn_StartCalview = new javax.swing.JButton();
+        btn_EndCalview = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        B_FirstTable = new javax.swing.JTable();
+
+	}
+	@Override
+	public void addLayOut() {
+        javax.swing.GroupLayout B_SelectPanelLayout = new javax.swing.GroupLayout(B_SelectPanel);
+        B_SelectPanel.setLayout(B_SelectPanelLayout);
+        B_SelectPanelLayout.setHorizontalGroup(
+            B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, B_SelectPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(B_SelectPanelLayout.createSequentialGroup()
+                        .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lab_SelectCompany)
+                            .addComponent(lab_SelectDate))
+                        .addGap(18, 18, 18)
+                        .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(B_SelectPanelLayout.createSequentialGroup()
+                                .addComponent(tf_StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_StartCalview, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(tf_EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_EndCalview, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(320, 320, 320))
+                            .addGroup(B_SelectPanelLayout.createSequentialGroup()
+                                .addComponent(combo_Company, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lab_ResState)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(combo_ResState, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(B_SelectPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_ClearObject, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        B_SelectPanelLayout.setVerticalGroup(
+            B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(B_SelectPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lab_SelectCompany)
+                    .addComponent(combo_Company, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lab_ResState)
+                        .addComponent(combo_ResState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lab_SelectDate)
+                    .addComponent(tf_StartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_EndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_StartCalview)
+                    .addComponent(btn_EndCalview))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(B_SelectPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_ClearObject)
+                    .addComponent(btn_Search))
+                .addGap(18, 18, 18))
+        );
+
+		fvmodel = new B_FirstViewModel();
+        B_FirstTable.setModel(fvmodel);
+        
+        jScrollPane1.setViewportView(B_FirstTable);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B_SelectPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(B_SelectPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+		
+	}
+	
+	
+	public enum MeetingState {
+			RECRUITING_MEETING("모집중"),
+			DEADLINE_MEETING("모집마감"),
+			COMPLETED_RES_MEETINGROOM("예약완료"),
+			END_MEETING("모임완료"),
+			CANCEL_MEETINGROOM("예약취소");
+		
+			private String state;
+	        
+	        // 열거 값에 (String) 값 state 에 대입
+			MeetingState(String values){
+		  		state = values;
+	        }
+	        
+	        // state 값 반환
+	        public String getRoomState(){
+	            return state;
+	        }
+	}
+	
+	@Override
+	public void eventProc() {
+		// TODO Auto-generated method stub
+		B_FirstViewEvent evt = new B_FirstViewEvent();
+		
+		btn_StartCalview.addActionListener(evt);
+		btn_EndCalview.addActionListener(evt);
+		btn_ClearObject.addActionListener(evt);
+		btn_Search.addActionListener(evt);
+		
+	}
+
+	
+	class B_FirstViewEvent implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+	
+			 Object evt = e.getSource();
+			 	//접수일자 Start
+			 	//18.12.03 month 에 +1로 처리하던것을 바꿈
+		    if( evt == btn_StartCalview ) {
+		    	CalView calv = new CalView(bc);
+		    	tf_StartDate.setText(calv.setPickedDate());
+		    	//접수일자 End
+		    } else if( evt == btn_EndCalview ) {
+		    	CalView calv = new CalView(bc);
+		    	tf_EndDate.setText(calv.setPickedDate());
+		    	// 초기화
+		    } else if ( evt == btn_ClearObject) {
+		    	clearObject();
+		    	// 검색
+		    } else if ( evt == btn_Search) {
+		    	selectResv();
+		    } 
+		}
+	}
+	
+	private void clearObject() {
+		combo_Company.setSelectedIndex(0);
+    	combo_ResState.setSelectedIndex(0);
+    	tf_StartDate.setText("");
+    	tf_EndDate.setText("");
+    	B_FirstTable.setModel(new B_FirstViewModel()); // null 로 설정하려 했으나, 맨위의 colum은 남아있어야함
+    	fvmodel.fireTableDataChanged();
+	}
+	
+	private void selectResv() {
+
+		String sc_name = combo_Company.getSelectedItem().toString();
+		String res_state = combo_ResState.getSelectedItem().toString();
+		String start_date = tf_StartDate.getText();
+		String end_date = tf_EndDate.getText();
+
+		try {
+			if(sc_name.equals("선    택") || res_state.equals("선    택")) {
+				throw new Exception("항목을 선택해주세요.");
+			}
+			ArrayList list = vc.callgetReslist(sc_name, start_date, end_date, res_state);
+			fvmodel.data = list;
+			B_FirstTable.setModel(fvmodel);
+			fvmodel.fireTableDataChanged();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "[알 림]", JOptionPane.WARNING_MESSAGE);
+		}
+		
+	}
+	
+	class CalView {
+		
+		 int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+		 //18.12.03(calendar에서 month는 0~11로 정의됨)
+		 int month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
+		 String day = "";
+		 JLabel l = new JLabel("", JLabel.CENTER);
+		 
+		 JDialog d;
+		 JButton[] button = new JButton[49];
+
+		public CalView(JFrame parent) {
+		         d = new JDialog();
+		         d.setModal(true);
+		         
+		         String[] header = { "일", "월", "화", "수", "목", "금", "토" };
+		         
+		         JPanel p1 = new JPanel(new GridLayout(7, 6));
+		         p1.setPreferredSize(new Dimension(350, 310));
+
+		
+		         for (int x = 0; x < button.length; x++) {
+		        	 
+		                 final int selection = x;
+		                 button[x] = new JButton();
+		                 button[x].setBorder(LineBorder.createBlackLineBorder());
+		                 button[x].setFocusPainted(true);
+		                 button[x].setBackground(Color.white);
+		                 System.out.println(button[x].isFocusPainted());
+		                 
+		                 if (x > 6)
+		                         button[x].addActionListener(new ActionListener() {
+		                                 public void actionPerformed(ActionEvent ae) {
+		                                         day = button[selection].getActionCommand();
+		                                         //18.12.03 D 형식인것을 DD 형식으로 수정하기위해 0을 붙여서 수정함...
+		                                         if(day.length() == 1) 
+		                                        	 day = "0" + day;
+		                                         d.dispose();
+		                                 }
+		                         });
+		                 if (x < 7) // 일 ~ 토 설정
+		                         button[x].setText(header[x]);
+		                 
+		                 //18.12.03 토요일 일요일 색깔설정 분리
+		                 if(x==0||x==7||x==14||x==21||x==28||x==35||x==42) {  
+		                	 button[x].setForeground(Color.RED); 
+		                 }
+		                 else if(x==6||x==13||x==20||x==27||x==34||x==41) {
+		                	 button[x].setForeground(Color.BLUE);
+		                 }
+		                 
+		            	 p1.add(button[x]);
+						 //18.12.03 btn이 disable이 되어도 UI가 작동하도록 처리
+		                 if(x==1||x==2||x==3||x==4||x==5){
+		                	 button[x].setBackground(Color.PINK);
+		                	 button[x].setForeground(Color.BLACK);
+		                	 button[x].setUI(new MetalButtonUI() {
+		                		 @Override
+		                		 protected Color getDisabledTextColor() {
+		                			 return Color.BLACK;
+		                		 }
+		                	 });
+		                 }
+		                 else if(x==0) {
+		                	 button[x].setBackground(Color.PINK);
+		                	 button[x].setForeground(Color.RED);
+		                	 button[x].setUI(new MetalButtonUI() {
+		                		 @Override
+		                		 protected Color getDisabledTextColor() {
+		                			 return Color.RED;
+		                		 }
+		                	 });
+		                 }
+		                 else if(x==6) {
+		                	 button[x].setBackground(Color.PINK);
+		                	 button[x].setForeground(Color.BLUE);
+		                	 button[x].setUI(new MetalButtonUI() {
+		                		 @Override
+		                		 protected Color getDisabledTextColor() {
+		                			 return Color.BLUE;
+		                		 }
+		                	 });
+		                 }
+		                 
+
+		         }
+		         JPanel p2 = new JPanel(new FlowLayout());
+		         JButton previous = new JButton("◀");
+		         
+		         previous.addActionListener(new ActionListener() {
+		                 public void actionPerformed(ActionEvent ae) {
+		                	 if(month == 1) {
+		                		 year--;
+		                		 month = 11;
+		                	 }
+		                	 else {
+		                		 month--;
+		                	 }
+		                         displayDate();
+		                 }
+		         });
+		
+		         p2.add(previous);
+		         p2.add(new JLabel("                          "));
+		         p2.add(l);
+		         
+		     
+		         JButton next = new JButton("▶");
+		         next.addActionListener(new ActionListener() {
+		                 public void actionPerformed(ActionEvent ae) {
+		                	 	if(month == 11) {
+			                		year++;
+			                		month = 0;
+			                	 }
+			                	 else {
+			                		 month++;
+			                	 }
+			                         displayDate();
+		                 }
+		         });
+		         p2.add(new JLabel("                           "));
+		         p2.add(next);
+		         
+		         p1.setBackground(new Color(255,255,255));
+		         p2.setBackground(new Color(255,255,255));
+		         
+		         d.add(p2, BorderLayout.CENTER);
+		         d.add(p1, BorderLayout.SOUTH);
+		         d.pack();
+		         d.setLocationRelativeTo(parent);
+		         displayDate();
+		         d.setVisible(true);
+		        
+		         
+		         
+		 }
+		public CalView() {
+			 displayDate();
+		}
+		
+		
+		public void displayDate() {
+		         for (int x = 7; x < button.length; x++)
+		                 button[x].setText("");
+		         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(
+		                         "yyyy년 MMMM");
+		         java.util.Calendar cal = java.util.Calendar.getInstance();
+		         cal.set(year, month, 1);
+		         
+		         int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
+		         int daysInMonth = cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);
+		         
+		         for (int x = 6 + dayOfWeek, day = 1; day <= daysInMonth; x++, day++)
+		         {
+		        	    button[x].setText(String.valueOf(day));
+		         }		         
+
+		         
+		         for(int i = 0; i < button.length; i++) {
+		        	button[i].setEnabled(true);
+		         }
+		         for(int x = 0 ; x <  6 + dayOfWeek ; x++) {
+		         	button[x].setEnabled(false);
+		         }
+		         for(int x = 6 + daysInMonth + dayOfWeek ; x < button.length ; x++) {
+		         	button[x].setEnabled(false);
+		         }
+		         
+		         l.setText(sdf.format(cal.getTime()));
+		         d.setTitle("Date Picker");
+		 }
+		
+		 public String setPickedDate() {
+		         if (day.equals(""))
+		                 return day;
+		         java.util.Calendar cal = java.util.Calendar.getInstance();
+		         cal.set(year, month, Integer.parseInt(day));
+		         String mymonth = String.valueOf(cal.get(Calendar.MONTH)+ 1) ;
+		         if(mymonth.length() == 1)
+		        	 mymonth = "0" + mymonth;
+
+		         String mydate = cal.get(Calendar.YEAR) + "/" + mymonth + "/" + day;
+		         return mydate;
+		 }
+ 
+	}
+	
+	class B_FirstViewModel extends AbstractTableModel { 
+		  
+		ArrayList data = new ArrayList(); // row
+		
+//		ArrayList<String> columnNames = new ArrayList<String>();
+//		
+//		
+//		public B_FirstViewModel() {
+//			columnNames.add("선     택");
+//		}
+//		
+//		public B_FirstViewModel(String value) {
+//			columnNames.add("선     택");
+//		}
+		
+		String [] columnNames = { "스터디룸 명", "예약자 명", "예약 날짜", "예약 상태" };
+		
+		
+		//=============================================================
+		// 1. 기본적인 TabelModel  만들기
+		// 아래 세 함수는 TabelModel 인터페이스의 추상함수인데
+		// AbstractTabelModel에서 구현되지 않았기에...
+		// 반드시 사용자 구현 필수!!!!
+		
+			@Override
+		    public int getColumnCount() { 
+		        return columnNames.length; 
+		    } 
+			
+			@Override
+		    public int getRowCount() { 
+		        return data.size(); 
+		    } 
+		
+			@Override
+		    public Object getValueAt(int row, int col) {
+				ArrayList temp = (ArrayList)data.get(row); // row 가져오기
+		        return temp.get( col ); 	 				// 해당 row의 col 가져오기
+		    }
+		
+			
+			@Override
+			public boolean isCellEditable(int row, int column)
+			{
+				return false;
+			}
+			
+			
+		//===============================================================
+		// 2. 지정된 컬럼명으로 변환하기
+		//
+		//      기본적으로 A, B, C, D 라는 이름으로 컬럼명이 지정된다
+			@Override
+		    public String getColumnName(int col) { 
+		        return columnNames[col]; 
+		    } 
+		
+		}
+}

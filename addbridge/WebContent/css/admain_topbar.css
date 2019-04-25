@@ -1,0 +1,138 @@
+
+/* header, admain-top-bar- */
+
+.admain-top-bar{
+	background-color : rgb(26, 188, 156);
+	position: relative;
+	width : 100%;
+	height : 60px;
+	display : inline-block;
+	z-index : 10;
+}
+.admain-top-bar div{
+	display : inline-block;
+	color : white;
+	font-weight : bold;
+	line-height : 60px;
+}
+
+.admain-top-bar-left{
+	font-size : 24px;
+	padding-left : 12%;
+}
+
+.title{
+	cursor : pointer;
+}
+
+.title p{
+	display : inline-block;
+	padding-right: 5px;
+}
+
+.title i{
+	font-size : 1.2rem;
+}
+
+.admain-top-bar-right{
+	float : right;
+	padding-right : 12%;
+}
+.admain-top-bar-right p{
+	display : inline-block;
+	padding-right : 10px;	
+}
+
+.admain-top-bar-right a{
+	color : white;
+	text-decoration: none;	
+}
+
+.admain-top-bar-right div{
+	cursor : pointer;
+}
+
+.topbar-name-font{
+	font-size : 1.2rem;
+}
+
+.welcome{
+	font-size : 1.0rem;
+}
+
+.icon{
+	vertical-align: middle;
+}
+
+/* 카테고리 topbar */
+
+.toggleMenu {
+    display:  none;
+    background: #666;
+    color: #fff;
+}
+.top-category-nav {
+     list-style: none;
+     position: relative;
+     padding-right : 10px;
+     display : inline-block;
+}
+.top-category-nav:before,
+.top-category-nav:after {
+    content: " "; 
+    display: table; 
+}
+.top-category-nav:after {
+    clear: both;
+}
+.top-category-nav ul {
+    list-style: none;
+    width: 9em;
+}
+.top-category-nav a {
+    color:#fff;
+    font-size: 1rem;
+}
+.top-category-nav > li {
+    float: left;
+    z-index: 200;
+}
+.top-category-nav > li > a {
+    display: block;
+}
+.top-category-nav li ul {
+    position: absolute;
+    left: -9999px;
+    z-index: 100;
+}
+.top-category-nav li li a {
+    display: block;
+    background: rgb(26, 188, 156);;
+    position: relative;
+    z-index:100;
+    border-top: 1px solid #175e4c;
+    padding: 10px 15px;
+}
+.top-category-nav li li li a {
+    background:#249578;
+    z-index:200;
+    border-top: 1px solid #1d7a62;
+}
+
+.top-category-nav li {
+    position: relative;
+}
+
+.top-category-navicon li{ 
+	width: 100px;
+}
+
+.top-category-nav > li.hover > ul {
+	top : 15px;
+    left: 0;
+}
+.top-category-nav li li.hover ul {
+    left: 100%;
+    top: 0;
+}
+
